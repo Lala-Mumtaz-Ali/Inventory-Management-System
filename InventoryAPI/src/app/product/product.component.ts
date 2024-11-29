@@ -15,18 +15,19 @@ export class ProductComponent {
   products: any[] = [];
   productLots:any[] = [];
   product: any = {};
+  getProduct1: any = {};
   analysis: any = {};
   message: string = '';
   loading: boolean = false;
   productId!: number;
   categoryOptions: string[] = ['Shoes', 'Bags', 'Shirts', 'Pants', 'Accessories'];
   category!: string;
-  showProductIdForm: boolean = false;  // To control the visibility of the Product ID form
-  showProductAnalysisForm: boolean = false; // To control the visibility of the Product Analysis form
+  showProductIdForm: boolean = false;
+  showProductAnalysisForm: boolean = false; 
   deleteProductIdForm: boolean = false;
-  editingProduct: any = {}; // Object to store the editable product details
-  showEditForm: boolean = false; // To control the visibility of the edit form
-  filteredProduct: any = {}; // To store the filtered products
+  editingProduct: any = {}; 
+  showEditForm: boolean = false; 
+  filteredProduct: any = {}; 
   showFilteredProductsForm: boolean = false;
   displayContext: string = '';
   showCreateProduct: boolean = false;
@@ -54,6 +55,7 @@ export class ProductComponent {
   // Reset the content of the body (clear any displayed product, messages, etc.)
   resetBodyContent() {
     this.product = {};
+    this.getProduct1 = {};
     this.analysis = {};
     this.products = [];
     this.allProducts = [];
@@ -138,7 +140,7 @@ export class ProductComponent {
     this.loading = true;
     this.productService.getProduct(id).subscribe({
       next: (data) => {
-        this.product = data;
+        this.getProduct1 = data;
         this.message = '';
       },
       error: (err) => {

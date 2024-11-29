@@ -148,13 +148,13 @@
     <div *ngIf="message" class="message">{{ message }}</div>
 
     <!-- Display Product Details -->
-    <div *ngIf="product && product.name" class="display-section">
+    <div *ngIf="getProduct1 && getProduct1.name" class="display-section">
         <h3>{{ displayContext }}</h3>
-        <p><strong>Name:</strong> {{ product.name }}</p>
-        <p><strong>Price:</strong> ${{ product.current_Price }}</p>
-        <p><strong>Description:</strong> {{ product.description }}</p>
-        <p><strong>Category ID:</strong> {{ product.category_id }}</p>
-        <p><strong>Category Name:</strong> {{ categoryMapping[product.category_id] }}</p>
+        <p><strong>Name:</strong> {{ getProduct1.name }}</p>
+        <p><strong>Price:</strong> ${{ getProduct1.current_Price }}</p>
+        <p><strong>Description:</strong> {{ getProduct1.description }}</p>
+        <p><strong>Category ID:</strong> {{ getProduct1.category_id }}</p>
+        <p><strong>Category Name:</strong> {{ categoryMapping[getProduct1.category_id] }}</p>
     </div>
 
     <!-- Display Product Analysis -->

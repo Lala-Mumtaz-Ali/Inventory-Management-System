@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "vYLT5GFmfdE=",
+  "dgSpecHash": "7vbxCSi0R/U=",
   "success": true,
-  "projectFilePath": "C:\\Users\\mumta\\source\\repos\\Inventory\\Inventory\\Inventory.csproj",
+  "projectFilePath": "D:\\Inventory-Management-System\\Inventory\\Inventory\\Inventory.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\mumta\\.nuget\\packages\\automapper\\13.0.1\\automapper.13.0.1.nupkg.sha512",
     "C:\\Users\\mumta\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",

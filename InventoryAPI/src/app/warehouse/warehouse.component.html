@@ -8,7 +8,6 @@
             <ul>
                 <li><a (click)="toggleForm('warehouseListForm')">Get Warehouse List</a></li>
                 <li><a (click)="toggleForm('warehouseLotsForm')">Get Warehouse Lots by Warehouse ID</a></li>
-                <li><a (click)="toggleForm('transferableWarehousesForm')">Get Transferable Warehouses for a Lot</a></li>
                 <li><a (click)="toggleForm('transferLotForm')">Transfer Lot between Warehouses</a></li>
                 <li><a (click)="toggleForm('lotHistoryForm')">Track Lot</a></li>
                 <li><a (click)="toggleForm('allLotMovements')">Get All Lot Movements</a></li>
@@ -53,25 +52,6 @@
                 </ul>
             </div>
 
-            <div *ngIf="message" class="error-message">{{ message }}</div>
-        </div>
-
-        <!-- Form for Get Transferable Warehouses -->
-        <div *ngIf="transferableWarehousesFormVisible">
-            <h3>Get Transferable Warehouses</h3>
-            <form [formGroup]="warehouseForm" (ngSubmit)="getTransferableWarehouses()">
-                <div>
-                    <label for="lotId">Lot ID</label>
-                    <input type="number" id="lotId" formControlName="lotId" />
-                </div>
-                <button type="submit" [disabled]="warehouseForm.valid">Get Transferable Warehouses</button>
-            </form>
-            <div *ngIf="transferableWarehouses.length">
-                <h4>Transferable Warehouses</h4>
-                <ul>
-                    <li *ngFor="let warehouse of transferableWarehouses">{{ warehouse.name }}</li>
-                </ul>
-            </div>
             <div *ngIf="message" class="error-message">{{ message }}</div>
         </div>
 

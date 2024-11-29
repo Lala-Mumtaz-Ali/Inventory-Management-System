@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\mumta\\source\\repos\\Inventory\\Inventory\\Inventory.csproj": {}
+    "D:\\Inventory-Management-System\\Inventory\\Inventory\\Inventory.csproj": {}
   },
   "projects": {
-    "C:\\Users\\mumta\\source\\repos\\Inventory\\Inventory\\Inventory.csproj": {
+    "D:\\Inventory-Management-System\\Inventory\\Inventory\\Inventory.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\mumta\\source\\repos\\Inventory\\Inventory\\Inventory.csproj",
+        "projectUniqueName": "D:\\Inventory-Management-System\\Inventory\\Inventory\\Inventory.csproj",
         "projectName": "Inventory",
-        "projectPath": "C:\\Users\\mumta\\source\\repos\\Inventory\\Inventory\\Inventory.csproj",
+        "projectPath": "D:\\Inventory-Management-System\\Inventory\\Inventory\\Inventory.csproj",
         "packagesPath": "C:\\Users\\mumta\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\mumta\\source\\repos\\Inventory\\Inventory\\obj\\",
+        "outputPath": "D:\\Inventory-Management-System\\Inventory\\Inventory\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\mumta\\AppData\\Roaming\\NuGet\\NuGet.Config",

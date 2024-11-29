@@ -15,7 +15,7 @@ export class WarehouseComponent implements OnInit {
   // Data variables
   warehouses: any[] = [];
   warehouseLots: any[] = [];
-  transferableWarehouses: any[] = [];
+  //transferableWarehouses: any[] = [];
   lotHistory: any[] = [];
   message: string = '';
   loading: boolean = false;
@@ -56,7 +56,7 @@ export class WarehouseComponent implements OnInit {
     this.message = '';
     this.warehouses = [];
     this.warehouseLots = [];
-    this.transferableWarehouses = [];
+    //this.transferableWarehouses = [];
     this.lotHistory = [];
     this.lotMovement = [];
     this.warehouseForm.reset();
@@ -121,24 +121,24 @@ export class WarehouseComponent implements OnInit {
   }
 
   // Fetch transferable warehouses for a lot
-  getTransferableWarehouses() {
-    const { lotId } = this.warehouseForm.value;
-    if (!lotId) {
-      this.message = 'Please provide Lot ID.';
-      return;
-    }
-    this.loading = true;
-    this.warehouseService.getTransferableWarehouses(lotId).subscribe({
-      next: (data) => {
-        this.transferableWarehouses = data;
-        this.message = '';
-      },
-      error: (err) => {
-        this.message = `Error fetching transferable warehouses: ${err.message}`;
-      },
-      complete: () => (this.loading = false),
-    });
-  }
+  // getTransferableWarehouses() {
+  //   const { lotId } = this.warehouseForm.value;
+  //   if (!lotId) {
+  //     this.message = 'Please provide Lot ID.';
+  //     return;
+  //   }
+  //   this.loading = true;
+  //   this.warehouseService.getTransferableWarehouses(lotId).subscribe({
+  //     next: (data) => {
+  //       this.transferableWarehouses = data;
+  //       this.message = '';
+  //     },
+  //     error: (err) => {
+  //       this.message = `Error fetching transferable warehouses: ${err.message}`;
+  //     },
+  //     complete: () => (this.loading = false),
+  //   });
+  // }
 
   // Transfer a lot between warehouses
   transferLot() {
