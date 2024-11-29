@@ -14,7 +14,7 @@ Use this command on terminal:
 npm install -g @angular/cli
 
 **2) Clone the Repository**
-Use this command on terminal: git clone https://github.com/Lala-Mumtaz-Ali/Inventory-Management-System/tree/main/InventoryAPI
+Use this command on terminal: git clone https://github.com/Lala-Mumtaz-Ali/Inventory-Management-System/tree/main
 then this: cd your-angular-project
 
 **3) Install Project Dependencies**
