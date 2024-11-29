@@ -36,5 +36,7 @@ Then Select **Server** in workbench, from there select **Data Import**, tick the
 Like this you can import the data to the schema.
 
 
+**Note:** You can name your database anything, but for the project to work properly, you would have to change the connectionStrings in vs 2022 program and also in vs code in appSettings.json file, and will also have to update the storedProcedures and triggers in mySQL database that you'll get through dumping. (You can further refer to ChatGPT or any other resource for the settings)
+
 ### To run the project successfully
 You have run both Visual Studio Code and Visual Studio 2022 programs simultaneosly, you can run the Visual Studio Code by this command on its terminal **ng serve -o**, and you also have to run the VS 2022 program, just simple do this. **Hold CTRL then press F5 (CTRL+F5)**, a console will pop run, keep the console in the background.
