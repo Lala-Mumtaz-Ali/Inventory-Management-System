@@ -1,0 +1,178 @@
+/* Container for the employee list */
+.employee-list-container {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+/* Title of the section */
+.employee-list-title {
+    font-size: 24px;
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Header row for the employee list */
+.employee-list-header {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr 2fr 2fr;
+    gap: 20px;
+    font-weight: bold;
+    background-color: #efefef;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+/* Individual column headers */
+.employee-header {
+    text-align: center;
+}
+
+/* Styling for the list */
+.employee-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Styling for each list item */
+.employee-item {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr 2fr 2fr;
+    gap: 20px;
+    padding: 12px;
+    background-color: #fff;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    color: #444;
+}
+
+/* Styling for individual elements in each list item */
+.employee-name,
+.employee-role,
+.employee-email,
+.employee-contact {
+    text-align: center;
+}
+
+/* Adding hover effect for list items */
+.employee-item:hover {
+    background-color: #f1f1f1;
+    cursor: pointer;
+}
+
+/* Responsive Design: Adjust layout for smaller screens */
+@media (max-width: 768px) {
+    .employee-list-header {
+        grid-template-columns: 1fr 2fr 1fr 2fr;
+    }
+    .employee-item {
+        grid-template-columns: 1fr 2fr 1fr 2fr;
+    }
+}
+
+
+
+/* Get By User Form */
+.employee-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Full viewport height */
+    background-color: #f9f9f9;
+    padding: 20px;
+}
+
+/* Title for the form */
+.form-title {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Styling for the form */
+.employee-form {
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px; /* Limit width */
+    margin-bottom: 20px;
+}
+
+/* Form group (input label and field) styling */
+.form-group {
+    margin-bottom: 15px;
+}
+
+/* Label styling */
+.form-group label {
+    font-weight: bold;
+    color: #333;
+}
+
+/* Input field styling */
+.form-control {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%;
+}
+
+/* Button styling */
+.btn {
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn:disabled {
+    background-color: #d6d6d6;
+}
+
+/* Styling for the fetched employee details */
+.employee-details {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px; /* Same as form max-width */
+}
+
+/* Styling for employee info text */
+.employee-info p {
+    margin: 5px 0;
+    font-size: 16px;
+    color: #333;
+}
+
+.employee-info strong {
+    color: #007bff;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .employee-form, .employee-details {
+        max-width: 90%;
+    }
+}
+

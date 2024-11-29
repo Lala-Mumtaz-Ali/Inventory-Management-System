@@ -1,0 +1,154 @@
+<div class="warehouse-container">
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <h2>Warehouse</h2>
+        </div>
+        <div class="sidebar-menu">
+            <ul>
+                <li><a (click)="toggleForm('warehouseListForm')">Get Warehouse List</a></li>
+                <li><a (click)="toggleForm('warehouseLotsForm')">Get Warehouse Lots by Warehouse ID</a></li>
+                <li><a (click)="toggleForm('transferableWarehousesForm')">Get Transferable Warehouses for a Lot</a></li>
+                <li><a (click)="toggleForm('transferLotForm')">Transfer Lot between Warehouses</a></li>
+                <li><a (click)="toggleForm('lotHistoryForm')">Track Lot</a></li>
+                <li><a (click)="toggleForm('allLotMovements')">Get All Lot Movements</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Main Content Area (to the right of sidebar) -->
+    <div class="main-content">
+        <!-- Form for Get Warehouse List -->
+        <div *ngIf="warehouses.length">
+            <h3>Warehouse List</h3>
+            <ul>
+                <li *ngFor="let warehouse of warehouses">{{ warehouse.name }}</li>
+            </ul>
+        </div>
+
+        <!-- Form for Get Warehouse Lots -->
+        <div *ngIf="warehouseLotsFormVisible">
+            <h3>Get Warehouse Lots</h3>
+            <form [formGroup]="warehouseForm" (ngSubmit)="getWarehouseLots()">
+                <div>
+                    <label for="warehouseId">Warehouse ID</label>
+                    <input type="number" id="warehouseId" formControlName="warehouseId" />
+                </div>
+                <div>
+                    <label for="productId">Product ID</label>
+                    <input type="number" id="productId" formControlName="productId" />
+                </div>
+                <button type="submit" [disabled]="warehouseForm.valid">Get Warehouse Lots</button>
+            </form>
+            <div *ngIf="warehouseLots.length">
+                <h4>Warehouse Lots</h4>
+                <ul>
+                    <li *ngFor="let lot of warehouseLots">
+                        <p><strong>Lot ID:</strong> {{ lot.id }}</p>
+                        <p><strong>Manufacturing Date:</strong> {{ lot.manufacturing_date | date }}</p>
+                        <p><strong>Product ID:</strong> {{ lot.product_id }}</p>
+                        <p><strong>Quantity:</strong> {{ lot.quantity }}</p>
+                        <p><strong>Warehouse ID:</strong> {{ lot.wareHouse_Id }}</p>
+                    </li>
+                </ul>
+            </div>
+
+            <div *ngIf="message" class="error-message">{{ message }}</div>
+        </div>
+
+        <!-- Form for Get Transferable Warehouses -->
+        <div *ngIf="transferableWarehousesFormVisible">
+            <h3>Get Transferable Warehouses</h3>
+            <form [formGroup]="warehouseForm" (ngSubmit)="getTransferableWarehouses()">
+                <div>
+                    <label for="lotId">Lot ID</label>
+                    <input type="number" id="lotId" formControlName="lotId" />
+                </div>
+                <button type="submit" [disabled]="warehouseForm.valid">Get Transferable Warehouses</button>
+            </form>
+            <div *ngIf="transferableWarehouses.length">
+                <h4>Transferable Warehouses</h4>
+                <ul>
+                    <li *ngFor="let warehouse of transferableWarehouses">{{ warehouse.name }}</li>
+                </ul>
+            </div>
+            <div *ngIf="message" class="error-message">{{ message }}</div>
+        </div>
+
+        <!-- Form for Transfer Lot -->
+        <div *ngIf="transferLotFormVisible">
+            <h3>Transfer Lot</h3>
+            <form [formGroup]="warehouseForm" (ngSubmit)="transferLot()">
+                <div>
+                    <label for="lot_id">Lot ID</label>
+                    <input type="number" id="lot_id" formControlName="lot_id" />
+                </div>
+                <div>
+                    <label for="Dest_id">Destination Warehouse ID</label>
+                    <input type="number" id="Dest_id" formControlName="Dest_id" />
+                </div>
+                <button type="submit" [disabled]="warehouseForm.valid">Transfer Lot</button>
+            </form>
+            <div *ngIf="message" class="error-message">{{ message }}</div>
+        </div>
+
+        <!-- Form for Track Lot -->
+        <div *ngIf="lotHistoryFormVisible">
+            <h3>Track Lot</h3>
+            <form [formGroup]="warehouseForm" (ngSubmit)="trackLot()">
+                <div>
+                    <label for="lotId">Lot ID</label>
+                    <input type="number" id="lotId" formControlName="lotId" />
+                </div>
+                <button type="submit" [disabled]="warehouseForm.valid">Track Lot</button>
+            </form>
+
+            <div *ngIf="lotHistory.length">
+                <h4>Lot History</h4>
+                <ul>
+                    <li *ngFor="let history of lotHistory">
+                        <p><strong>Destination:</strong> {{ history.destination }}</p>
+                        <p><strong>ID:</strong> {{ history.id }}</p>
+                        <p><strong>Lot ID:</strong> {{ history.lot_Id }}</p>
+                        <p><strong>Product ID:</strong> {{ history.product_Id }}</p>
+                        <p><strong>Related Movement:</strong> {{ history.related_Movement || 'None' }}</p>
+                        <p><strong>Source:</strong> {{ history.source }}</p>
+                        <p><strong>Transaction Date:</strong> {{ history.transaction_date | date:'medium' }}</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+
+        <!-- Form for Get Lot Movements -->
+        <div *ngIf="lotMovement.length">
+            <h3>Lot Movements</h3>
+            <table class="styled-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Product ID</th>
+                        <th>Lot ID</th>
+                        <th>Source</th>
+                        <th>Destination</th>
+                        <th>Transaction Date</th>
+                        <th>Related Movement</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let ltMovement of lotMovement">
+                        <td>{{ ltMovement.id }}</td>
+                        <td>{{ ltMovement.product_Id }}</td>
+                        <td>{{ ltMovement.lot_Id }}</td>
+                        <td>{{ ltMovement.source }}</td>
+                        <td>{{ ltMovement.destination }}</td>
+                        <td>{{ ltMovement.transaction_date }}</td>
+                        <td>{{ ltMovement.related_Movement || 'N/A' }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+
+    </div>
+</div>

@@ -1,0 +1,33 @@
+<!-- src/app/login/login.component.html -->
+<div class="login-container">
+    <h2>Login</h2>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <div>
+            <label for="username">Username</label>
+            <input id="username" formControlName="username" type="text" />
+            <div class="errorfeedback"
+                *ngIf="hasDisplayableError('username') && loginForm.controls['username'].hasError('required')">
+                Please enter your Username
+            </div>
+        </div>
+
+        <div>
+            <label for="password">Password</label>
+            <input id="password" formControlName="password" type="text" />
+            <div class="errorfeedback"
+                *ngIf="hasDisplayableError('password') && loginForm.controls['password'].hasError('required')">
+                Please enter your email
+            </div>
+        </div>
+
+        <div class="mt-4">
+            <button type="submit" class="btn btn-success w-100 rounded-3">
+                Login
+            </button>
+        </div>
+
+        <div *ngIf="errorMessage" class="error">
+            {{ errorMessage }}
+        </div>
+    </form>
+</div>

@@ -1,0 +1,308 @@
+/* warehouse.component.css */
+
+.sidebar {
+  width: 250px;
+  height: 100vh;
+  background-color: #2c3e50; /* Deep navy blue */
+  color: white;
+  padding-top: 20px;
+  position: fixed;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for a floating effect */
+  font-family: 'Arial', sans-serif; /* Classic font */
+}
+
+.sidebar-header h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 1.5em;
+  font-weight: bold;
+  letter-spacing: 1px; /* Elegant spacing */
+  border-bottom: 1px solid white; /* Subtle underline */
+  padding-bottom: 10px;
+}
+
+.sidebar-menu ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar-menu li {
+  margin: 15px 0;
+}
+
+.sidebar-menu li a {
+  color: white;
+  text-decoration: none;
+  display: block;
+  padding: 12px 15px;
+  font-size: 1em;
+  font-weight: 500;
+  border-radius: 5px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.sidebar-menu li a:hover {
+  background-color: #34495e; /* Slightly lighter shade on hover */
+  color: #ecf0f1; /* Softer white */
+  cursor: pointer;
+}
+
+.main-content {
+  margin-left: 260px;
+  padding: 20px;
+  font-size: 1.2em;
+  background-color: #ecf0f1; /* Light gray for contrast */
+  min-height: 100vh;
+  color: #2c3e50; /* Matching dark text */
+  font-family: 'Arial', sans-serif;
+  box-sizing: border-box;
+}
+
+.main-content h3 {
+  color: #34495e; /* Dark gray */
+  margin-bottom: 15px;
+  border-bottom: 2px solid #2c3e50; /* Underline for headings */
+  padding-bottom: 5px;
+}
+
+.main-content form {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Elevation effect */
+  margin-bottom: 20px;
+}
+
+.main-content form label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+.main-content form input,
+.main-content form button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  font-size: 1em;
+  border: 1px solid #bdc3c7; /* Soft border */
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.main-content form button {
+  background-color: #2c3e50;
+  color: white;
+  font-weight: bold;
+  border: none;
+  transition: background-color 0.3s ease;
+}
+
+.main-content form button:hover {
+  background-color: #34495e;
+  cursor: pointer;
+}
+
+.message {
+  padding: 10px;
+  background-color: #2ecc71; /* Green for success */
+  color: white;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.loading-spinner {
+  text-align: center;
+  font-size: 1.2em;
+  color: #e74c3c; /* Red for loading indication */
+}
+
+/* Styles for the h5 headings */
+.h5New {
+  color: #2c3e50; /* Dark blue-gray color for readability */
+  font-size: 1.2rem; /* Slightly larger font size for prominence */
+  font-weight: 600; /* Semi-bold for emphasis */
+  text-transform: uppercase; /* Uppercase text for clarity */
+  margin-bottom: 10px; /* Spacing below the heading */
+  margin-top: 20px; /* Spacing above the heading */
+  border-left: 4px solid #3498db; /* Left border for visual emphasis */
+  padding-left: 10px; /* Padding to separate text from the border */
+}
+
+.products-container {
+  padding: 20px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+th {
+  background-color: #f4f4f4;
+  font-weight: bold;
+}
+
+button {
+  padding: 10px 15px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+/* Enhanced table styling */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0; /* Spacing from other elements */
+  font-size: 1em; /* Readable font size */
+  font-family: 'Arial', sans-serif;
+  background-color: #ffffff; /* White background for contrast */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+th {
+  background-color: #2c3e50; /* Matching sidebar color */
+  color: #ffffff; /* White text for contrast */
+  padding: 12px; /* Consistent spacing */
+  text-align: left;
+}
+
+td {
+  border: 1px solid #ddd; /* Subtle border between cells */
+  padding: 12px; /* Even spacing for readability */
+  color: #34495e; /* Dark gray text */
+}
+
+tr:nth-child(even) {
+  background-color: #f9f9f9; /* Light gray for alternating rows */
+}
+
+tr:hover {
+  background-color: #f1f1f1; /* Highlight row on hover */
+}
+
+/* Center align and style the headings above tables */
+.products-container h1,
+h3 {
+  text-align: center;
+  font-size: 1.8em;
+  color: #2c3e50; /* Dark text for visibility */
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-bottom: 2px solid #3498db; /* Accent border */
+  display: inline-block;
+  padding-bottom: 10px;
+}
+
+
+/* General styles for display sections */
+.display-section {
+  background-color: #ffffff; /* White background for contrast */
+  padding: 20px; /* Consistent spacing */
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow effect */
+  margin-bottom: 20px; /* Space between sections */
+  font-family: 'Arial', sans-serif; /* Clean font */
+  color: #2c3e50; /* Dark text for readability */
+}
+
+/* Section headers */
+.display-section h3 {
+  font-size: 1.8em; /* Larger heading size */
+  color: #34495e; /* Darker shade for emphasis */
+  text-transform: uppercase; /* Uniform appearance */
+  margin-bottom: 10px; /* Spacing below the heading */
+  border-bottom: 2px solid #3498db; /* Accent underline */
+  padding-bottom: 5px;
+  text-align: center; /* Center alignment for balance */
+}
+
+/* List styling for warehouses and filtered products */
+.display-section ul {
+  list-style-type: none; /* Remove default bullets */
+  padding: 0; /* Remove padding */
+  margin: 10px 0; /* Consistent spacing */
+}
+
+.display-section ul li {
+  background-color: #f9f9f9; /* Light gray for alternating items */
+  padding: 10px; /* Consistent spacing */
+  margin-bottom: 8px; /* Space between items */
+  border-radius: 5px; /* Slight rounding */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for pop */
+  transition: background-color 0.3s ease;
+}
+
+.display-section ul li:hover {
+  background-color: #f1f1f1; /* Highlight on hover */
+}
+
+/* Key-value display (e.g., Name, Price) */
+.display-section p {
+  margin: 5px 0; /* Compact spacing between items */
+  line-height: 1.5; /* Improve readability */
+  color: #34495e; /* Subtle gray for text */
+  font-size: 1em;
+}
+
+.display-section p strong {
+  color: #2c3e50; /* Bold dark color for labels */
+}
+
+/* Filtered products styling */
+.filtered-products ul {
+  margin: 10px 0; /* Space around */
+  padding: 0; /* Remove default padding */
+}
+
+.filtered-products ul li {
+  display: flex; /* Align items in a row */
+  justify-content: space-between; /* Space between name and price */
+  padding: 10px; /* Spacing for readability */
+  background-color: #f9f9f9; /* Alternating background */
+  margin-bottom: 4px; /* Space between items */
+  border-radius: 5px; /* Rounded corners */
+  transition: background-color 0.3s ease;
+}
+
+.filtered-products ul li:hover {
+  background-color: #e8f6f9; /* Soft blue highlight */
+}
+
+.filtered-products ul li strong {
+  font-weight: bold; /* Highlight key details */
+}
+
+/* Warehouse details */
+.warehouse-list {
+  margin-top: 10px;
+}
+
+.warehouse-list li {
+  border-bottom: 1px solid #ddd; /* Subtle separation */
+  padding: 8px 0; /* Spacing between items */
+  line-height: 1.5; /* Improve readability */
+}
+
+.warehouse-list li:last-child {
+  border-bottom: none; /* Remove border for last item */
+}

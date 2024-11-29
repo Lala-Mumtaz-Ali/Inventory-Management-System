@@ -1,0 +1,213 @@
+<div class="sidebar">
+    <div class="sidebar-header">
+        <h2>Products</h2>
+    </div>
+    <div class="sidebar-menu">
+        <ul>
+            <li><a (click)="fetchAllProducts()" role="button">Get All Products</a></li>
+            <li><a (click)="toggleAllProductLotsForm()" role="button">Get All Product Lots</a></li>
+            <li><a (click)="toggleProductIdForm()" role="button">Get Product</a></li>
+            <li><a (click)="toggleProductAnalysisForm()" role="button">Get Product Analysis</a></li>
+            <li><a (click)="toggleFilteredProductForm()" role="button">Filter Products by Category</a></li>
+            <li><a (click)="toggleCreateProductForm()" role="button">Create Product</a></li>
+            <li><a (click)="toggleEditProductForm()" role="button">Edit Product by ID</a></li>
+            <li><a (click)="toggleDeleteIdForm()" role="button">Delete Product by ID</a></li>
+        </ul>
+    </div>
+</div>
+
+<!-- Main Content -->
+<div class="main-content">
+    <!-- All Products Section -->
+    <div class="products-container" *ngIf="showAllProducts">
+        <h1>All Products</h1>
+    </div>
+    <div *ngIf="allProducts && allProducts.length > 0">
+        <table>
+            <thead>
+                <tr>
+                    <th>Product ID</th>
+                    <th>Name</th>
+                    <th>Category</th>
+                    <th>Price</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let product of allProducts">
+                    <td>{{ product.id }}</td>
+                    <td>{{ product.name }}</td>
+                    <td>{{ categoryMapping[product.category_id] || 'Unknown' }}</td>
+                    <td>${{ product.current_Price }}</td>
+                    <td>{{ product.description }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Product ID Form -->
+    <div *ngIf="showProductIdForm" class="form-section">
+        <h3>Enter Product ID</h3>
+        <form (ngSubmit)="getProductById()" aria-labelledby="productIdForm">
+            <label for="productId">Product ID:</label>
+            <input type="number" id="productId" [(ngModel)]="productId" name="productId" required />
+            <button type="submit" [disabled]="!productId">Get Product</button>
+        </form>
+    </div>
+
+    <!-- Product Analysis Form -->
+    <div *ngIf="showProductAnalysisForm" class="form-section">
+        <h3>Enter Product ID for Analysis</h3>
+        <form (ngSubmit)="getProductAnalysisById()" aria-labelledby="analysisForm">
+            <label for="productIdAnalysis">Product ID:</label>
+            <input type="number" id="productIdAnalysis" [(ngModel)]="productId" name="productId" required />
+            <button type="submit" [disabled]="!productId">Get Product Analysis</button>
+        </form>
+    </div>
+
+    <!-- Create Product Form -->
+    <div *ngIf="showCreateProduct" class="form-section">
+        <h3>Create Product</h3>
+        <form (ngSubmit)="createProductInputs()" aria-labelledby="createForm">
+            <label for="productName">Product Name:</label>
+            <input type="text" id="productName" [(ngModel)]="product.name" name="productName"
+                placeholder="Enter product name" required />
+
+            <label for="productCategory">Category ID:</label>
+            <input type="number" id="productCategory" [(ngModel)]="product.category_id" name="productCategory"
+                placeholder="Enter category ID" required />
+
+            <label for="productPrice">Current Price:</label>
+            <input type="number" id="productPrice" [(ngModel)]="product.current_price" name="productPrice"
+                placeholder="Enter product price" required />
+
+            <label for="productDescription">Description:</label>
+            <textarea id="productDescription" [(ngModel)]="product.description" name="productDescription"
+                placeholder="Enter product description" required></textarea>
+
+            <label for="lowStockThreshold">Low Stock Threshold:</label>
+            <input type="number" id="lowStockThreshold" [(ngModel)]="product.low_stock_threshold"
+                name="lowStockThreshold" placeholder="Enter low stock threshold" required />
+
+            <button type="submit">Create Product</button>
+        </form>
+    </div>
+
+    <!-- Filter Products Form -->
+    <div *ngIf="showFilteredProductsForm" class="form-section">
+        <h3>Filter Products by Category</h3>
+        <form (ngSubmit)="getMainFilteredProductsbyCategory()" aria-labelledby="filterForm">
+            <label for="category">Category:</label>
+            <select id="category" [(ngModel)]="category" name="category" required>
+                <option *ngFor="let option of categoryOptions" [value]="option">{{ option }}</option>
+            </select>
+            <button type="submit" [disabled]="!category">Get Products List</button>
+        </form>
+    </div>
+
+    <!-- Edit Product Form -->
+    <div *ngIf="showEditForm" class="form-section">
+        <h3>Edit Product</h3>
+        <form (ngSubmit)="editProductById()" aria-labelledby="editForm">
+            <label for="editProductId">Product ID:</label>
+            <input type="number" id="editProductId" [(ngModel)]="productId" name="productId" required />
+
+            <label for="editProductName">Product Name:</label>
+            <input type="text" id="editProductName" [(ngModel)]="editingProduct.name" name="productName" required />
+
+            <label for="editProductPrice">Current Price:</label>
+            <input type="number" id="editProductPrice" [(ngModel)]="editingProduct.current_price" name="productPrice"
+                required />
+
+            <label for="editProductDesc">Description:</label>
+            <input type="text" id="editProductDesc" [(ngModel)]="editingProduct.description" name="productDescription"
+                required />
+
+            <label for="editLowStockThreshold">Low Stock Threshold:</label>
+            <input type="number" id="editLowStockThreshold" [(ngModel)]="editingProduct.low_stock_threshold"
+                name="lowStockThreshold" required />
+
+            <button type="submit">Edit Product</button>
+        </form>
+    </div>
+
+    <!-- Delete Product Form -->
+    <div *ngIf="deleteProductIdForm" class="form-section">
+        <h3>Enter Product ID to Delete</h3>
+        <form (ngSubmit)="deleteById()" aria-labelledby="deleteForm">
+            <label for="deleteId">Product ID:</label>
+            <input type="number" id="deleteId" [(ngModel)]="productId" name="productId" required />
+            <button type="submit" [disabled]="!productId">Delete by Product ID</button>
+        </form>
+    </div>
+
+    <!-- Display Messages -->
+    <div *ngIf="loading" class="loading-spinner">Loading...</div>
+    <div *ngIf="message" class="message">{{ message }}</div>
+
+    <!-- Display Product Details -->
+    <div *ngIf="product && product.name" class="display-section">
+        <h3>{{ displayContext }}</h3>
+        <p><strong>Name:</strong> {{ product.name }}</p>
+        <p><strong>Price:</strong> ${{ product.current_Price }}</p>
+        <p><strong>Description:</strong> {{ product.description }}</p>
+        <p><strong>Category ID:</strong> {{ product.category_id }}</p>
+        <p><strong>Category Name:</strong> {{ categoryMapping[product.category_id] }}</p>
+    </div>
+
+    <!-- Display Product Analysis -->
+    <div *ngIf="analysis && analysis.name" class="display-section">
+        <h3>Product Analysis</h3>
+        <p><strong>Name:</strong> {{ analysis.name }}</p>
+        <p><strong>Price:</strong> ${{ analysis.current_price }}</p>
+        <p><strong>Description:</strong> {{ analysis.description }}</p>
+
+        <!-- Display Warehouse List -->
+        <h4>Available in Warehouses:</h4>
+        <ul>
+            <li *ngFor="let warehouse of analysis.warehouse_List">
+                <strong>Warehouse Name:</strong> {{ warehouse.warehouse_name }} <br />
+                <strong>Warehouse ID:</strong> {{ warehouse.warehouse_id }} <br />
+                <strong>Number of Lots:</strong> {{ warehouse.numberOfLots }} <br />
+                <strong>Total Quantity:</strong> {{ warehouse.totalQuantity }} <br />
+            </li>
+        </ul>
+    </div>
+
+    <!-- Display Filtered Products -->
+    <div *ngIf="products.length" class="display-section">
+        <h3>Filtered Products</h3>
+        <ul>
+            <li *ngFor="let product of products">
+                <strong>Name:</strong> {{ product.name }} <br />
+                <strong>Price:</strong> ${{ product.current_Price }}
+            </li>
+        </ul>
+    </div>
+
+
+
+    <div *ngIf="productLots.length">
+        <h2>Product Lots</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Warehouse ID</th>
+                    <th>Product ID</th>
+                    <th>Quantity</th>
+                    <th>Manufacturing Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let lot of productLots">
+                    <td>{{ lot.id }}</td>
+                    <td>{{ lot.wareHouse_Id }}</td>
+                    <td>{{ lot.product_id }}</td>
+                    <td>{{ lot.quantity }}</td>
+                    <td>{{ lot.manufacturing_date }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

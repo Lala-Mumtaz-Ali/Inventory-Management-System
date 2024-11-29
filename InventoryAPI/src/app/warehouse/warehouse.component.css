@@ -1,0 +1,335 @@
+/* orders.component.css */
+
+/* Styling for the sidebar (if applicable in your orders page) */
+.sidebar {
+  width: 250px;
+  height: 100vh;
+  background-color: #2c3e50; /* Deep navy blue */
+  color: white;
+  padding-top: 20px;
+  position: fixed;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for a floating effect */
+  font-family: 'Arial', sans-serif; /* Classic font */
+}
+
+.sidebar-header h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 1.5em;
+  font-weight: bold;
+  letter-spacing: 1px; /* Elegant spacing */
+  border-bottom: 1px solid white; /* Subtle underline */
+  padding-bottom: 10px;
+}
+
+.sidebar-menu ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar-menu li {
+  margin: 15px 0;
+}
+
+.sidebar-menu li a {
+  color: white;
+  text-decoration: none;
+  display: block;
+  padding: 12px 15px;
+  font-size: 1em;
+  font-weight: 500;
+  border-radius: 5px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.sidebar-menu li a:hover {
+  background-color: #34495e; /* Slightly lighter shade on hover */
+  color: #ecf0f1; /* Softer white */
+  cursor: pointer;
+}
+
+/* Styling for the main content */
+.main-content {
+  margin-left: 260px;
+  padding: 20px;
+  font-size: 1.2em;
+  background-color: #ecf0f1; /* Light gray for contrast */
+  min-height: 100vh;
+  color: #2c3e50; /* Matching dark text */
+  font-family: 'Arial', sans-serif;
+  box-sizing: border-box;
+}
+
+.main-content h3 {
+  color: #34495e; /* Dark gray */
+  margin-bottom: 15px;
+  border-bottom: 2px solid #2c3e50; /* Underline for headings */
+  padding-bottom: 5px;
+}
+
+.main-content form {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Elevation effect */
+  margin-bottom: 20px;
+}
+
+.main-content form label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+.main-content form input,
+.main-content form button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  font-size: 1em;
+  border: 1px solid #bdc3c7; /* Soft border */
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.main-content form button {
+  background-color: #2c3e50;
+  color: white;
+  font-weight: bold;
+  border: none;
+  transition: background-color 0.3s ease;
+}
+
+.main-content form button:hover {
+  background-color: #34495e;
+  cursor: pointer;
+}
+
+/* Styling for the error message container */
+.error-message {
+  padding: 10px;
+  background-color: #e74c3c; /* Red for error */
+  color: white;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* Loading spinner styles (optional, for handling async requests) */
+.loading-spinner {
+  text-align: center;
+  font-size: 1.2em;
+  color: #e74c3c; /* Red for loading indication */
+}
+
+/* Additional custom heading for error messages */
+.h5New {
+  color: #2c3e50; /* Dark blue-gray color for readability */
+  font-size: 1.2rem; /* Slightly larger font size for prominence */
+  font-weight: 600; /* Semi-bold for emphasis */
+  text-transform: uppercase; /* Uppercase text for clarity */
+  margin-bottom: 10px; /* Spacing below the heading */
+  margin-top: 20px; /* Spacing above the heading */
+  border-left: 4px solid #3498db; /* Left border for visual emphasis */
+  padding-left: 10px; /* Padding to separate text from the border */
+}
+
+/* Custom message styles for success */
+.message {
+  padding: 10px;
+  background-color: #2ecc71; /* Green for success */
+  color: white;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* Styling for the product list */
+.product-list {
+  margin-top: 20px;
+}
+
+.product-list h3 {
+  color: #34495e;
+  margin-bottom: 15px;
+  border-bottom: 2px solid #2c3e50;
+  padding-bottom: 5px;
+}
+
+/* Styling for individual product items */
+.product-item {
+  background: white;
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.product-item div {
+  margin-bottom: 10px;
+  font-size: 1.1em;
+}
+
+.product-item strong {
+  font-weight: bold;
+}
+
+.product-item .price {
+  font-size: 1.2em;
+  color: #2ecc71; /* Green for pricing */
+}
+
+.product-item .category-id {
+  font-size: 1em;
+  color: #3498db; /* Blue for category */
+}
+
+.product-item .low-stock-threshold {
+  color: #e74c3c; /* Red for low stock */
+}
+
+
+/* Styling for the Pending Orders Form */
+.pending-orders-form {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Elevation effect */
+  margin-bottom: 20px;
+}
+
+.pending-orders-form label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+.pending-orders-form input,
+.pending-orders-form button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  font-size: 1em;
+  border: 1px solid #bdc3c7; /* Soft border */
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.pending-orders-form button {
+  background-color: #2c3e50;
+  color: white;
+  font-weight: bold;
+  border: none;
+  transition: background-color 0.3s ease;
+}
+
+.pending-orders-form button:hover {
+  background-color: #34495e;
+  cursor: pointer;
+}
+
+/* Styling for Pending Orders List */
+.product-list {
+  margin-top: 20px;
+}
+
+.product-list h3 {
+  color: #34495e;
+  margin-bottom: 15px;
+  border-bottom: 2px solid #2c3e50;
+  padding-bottom: 5px;
+}
+
+.product-item {
+  background: white;
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Elevation effect */
+}
+
+.product-item div {
+  margin-bottom: 10px;
+  font-size: 1.1em;
+}
+
+.product-item strong {
+  font-weight: bold;
+}
+
+.product-item .price {
+  font-size: 1.2em;
+  color: #2ecc71; /* Green for pricing */
+}
+
+.product-item .category-id {
+  font-size: 1em;
+  color: #3498db; /* Blue for category */
+}
+
+.product-item .low-stock-threshold {
+  color: #e74c3c; /* Red for low stock */
+}
+
+/* Error Message Styling for Pending Orders */
+.error-message {
+  padding: 10px;
+  background-color: #e74c3c; /* Red for error */
+  color: white;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  font-weight: bold;
+  text-align: center;
+}
+
+
+/* Output container styling */
+.output-container {
+  background: #ffffff; /* White background */
+  padding: 20px; /* Padding for spacing */
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  margin-top: 20px; /* Space above the container */
+}
+
+/* Output list styling */
+.output-list {
+  list-style-type: none; /* Remove bullet points */
+  padding: 0; /* Remove default padding */
+  margin: 0; /* Remove default margin */
+}
+
+/* Output item styling */
+.output-item {
+  background: #ecf0f1; /* Light gray background for items */
+  padding: 15px; /* Padding for spacing */
+  margin-bottom: 10px; /* Space between items */
+  border-radius: 5px; /* Rounded corners for items */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  font-size: 1.1em; /* Slightly larger text for readability */
+  color: #2c3e50; /* Dark text color */
+}
+
+/* Highlight important information */
+.output-item strong {
+  color: #2c3e50; /* Bold dark color for strong text */
+  font-weight: bold; /* Emphasize strong elements */
+}
+
+/* Error message for missing or invalid data */
+.error-message {
+  padding: 10px;
+  background-color: #e74c3c; /* Red background for errors */
+  color: white; /* White text for contrast */
+  border-radius: 5px; /* Rounded corners */
+  text-align: center; /* Center align text */
+  margin-top: 20px; /* Space above error messages */
+  font-weight: bold; /* Emphasize error text */
+}

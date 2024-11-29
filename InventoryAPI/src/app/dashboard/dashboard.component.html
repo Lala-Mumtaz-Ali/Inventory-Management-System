@@ -1,0 +1,67 @@
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-gradient shadow-lg">
+    <div class="container-fluid">
+        <a class="navbar-brand fw-bold text-uppercase" routerLink="#">Inventory System</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" routerLink="#">
+                        <i class="bi bi-house-door"></i> Home
+                    </a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" routerLink="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        <i class="bi bi-person-gear"></i> Edit Employees
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-custom shadow">
+                        <li><a class="dropdown-item" (click)="onOperationSelect('Create')">Create Employee</a></li>
+                        <li><a class="dropdown-item" (click)="onOperationSelect('Update')">Update Employee</a></li>
+                        <li><a class="dropdown-item" (click)="onOperationSelect('Delete')">Delete Employee</a></li>
+                        <li><a class="dropdown-item" (click)="onOperationSelect('Get All Employees')">Get All
+                                Employees</a></li>
+                        <li><a class="dropdown-item" (click)="onOperationSelect('Get By Username')">Get Employee By
+                                Username</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" routerLink="/warehouse">
+                        <i class="bi bi-boxes"></i> Warehouse
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" routerLink="/orders">
+                        <i class="bi bi-cart-check"></i> Orders
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" routerLink="/product">
+                        <i class="bi bi-bag-check"></i> Products
+                    </a>
+                </li>
+            </ul>
+            <div class="ms-auto">
+                <button class="btn btn-danger btn-rounded btn-sm" type="button" (click)="logout()">
+                    <i class="bi bi-box-arrow-right"></i> Logout
+                </button>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- Body Content -->
+<div class="container mt-5">
+    <!-- Welcome Message -->
+    <h3 class="text-center text-gradient fw-bold welcome-text" *ngIf="!showEditEmployee">Welcome to Inventory Management
+        System
+    </h3>
+
+    <!-- Employee Edit Section -->
+    <div class="mt-4 p-4 bg-light rounded shadow" *ngIf="showEditEmployee">
+        <app-edit-employee [selectedOperation]="selectedOperation"></app-edit-employee>
+    </div>
+</div>

@@ -1,0 +1,209 @@
+<div class="orders-container">
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <h2>Orders</h2>
+        </div>
+        <div class="sidebar-menu">
+            <ul>
+                <li><a (click)="toggleForm('suppliersForm')">Get Suppliers List</a></li>
+                <li><a (click)="toggleForm('orderItemsForm')">Get All OrderItems</a></li>
+                <li><a (click)="toggleForm('purchaseOrdersForm')">Get All Purchase-Orders</a></li>
+                <li><a (click)="toggleForm('categoryForm')">Retrieve Products by Category</a></li>
+                <li><a (click)="toggleForm('pendingOrdersForm')">Get Pending Customer Orders</a></li>
+                <li><a (click)="toggleForm('dispatchOrdersForm')">Dispatch Orders</a></li>
+                <li><a (click)="toggleForm('lowStockForm')">Reorder Low Stock Products</a></li>
+                <li><a (click)="toggleForm('missingProductsForm')">Reorder Missing Products</a></li>
+                <li><a (click)="toggleForm('receivePurchaseForm')">Receive Purchase Orders</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Main Content Area (to the right of sidebar) -->
+    <div class="main-content">
+
+        <!-- Suppliers Section -->
+        <div *ngIf="suppliersFormVisible">
+            <h3>All Suppliers</h3>
+            <ul class="supplier-list">
+                <li *ngFor="let supplier of suppliers" class="supplier-item">
+                    <div><strong>Supplier ID:</strong> {{ supplier.id }}</div>
+                    <div><strong>Supplier Name:</strong> {{ supplier.name }}</div>
+                    <div><strong>Category ID:</strong> {{ supplier.category_id }}</div>
+                    <div><strong>Contact:</strong> {{ supplier.contact }}</div>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Purchase Orders Section -->
+        <div *ngIf="purchaseOrdersFormVisible">
+            <h3>All Purchase Orders</h3>
+            <table class="order-items-table">
+                <thead>
+                    <tr>
+                        <th>Purchase Order ID</th>
+                        <th>Product ID</th>
+                        <th>Warehouse ID</th>
+                        <th>Order Date</th>
+                        <th>Quantity</th>
+                        <th>Total Price</th>
+                        <th>Supplier ID</th>
+                        <th>Delivery Date</th>
+                        <th>Is Received</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let purchaseOrder of purchaseOrders">
+                        <td>{{ purchaseOrder.id }}</td>
+                        <td>{{ purchaseOrder.product_Id }}</td>
+                        <td>{{ purchaseOrder.wareHouse_Id }}</td>
+                        <td>{{ purchaseOrder.order_Date }}</td>
+                        <td>{{ purchaseOrder.quantity }}</td>
+                        <td>{{ purchaseOrder.totalPrice }}</td>
+                        <td>{{ purchaseOrder.supplier_Id }}</td>
+                        <td>{{ purchaseOrder.delivery_Date }}</td>
+                        <td>{{ purchaseOrder.is_Received }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+
+        <!--Order Items-->
+        <div class="orders-container" *ngIf="orderItemsFormVisible">
+            <h2>Order Items</h2>
+            <div *ngIf="orderItems && orderItems.length > 0">
+                <table class="order-items-table">
+                    <thead>
+                        <tr>
+                            <th>Lot ID</th>
+                            <th>Order ID</th>
+                            <th>Product ID</th>
+                            <th>Quantity</th>
+                            <th>Unit Price</th>
+                            <th>Total Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of orderItems">
+                            <td>{{ item.id }}</td>
+                            <td>{{ item.order_Id }}</td>
+                            <td>{{ item.product_Id }}</td>
+                            <td>{{ item.quantity }}</td>
+                            <td>{{ item.unitPrice| currency }}</td>
+                            <td>{{ item.sub_Total| currency }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
+
+        <!-- Form to retrieve products by category -->
+        <div *ngIf="categoryFormVisible">
+            <h3>Retrieve Products by Category</h3>
+            <form (ngSubmit)="loadProductsByCategory(category)">
+                <label for="category">Category:</label>
+                <select id="category" [(ngModel)]="category" name="category" required>
+                    <option *ngFor="let option of categoryOptions" [value]="option">{{ option }}</option>
+                </select>
+                <button type="submit">Retrieve</button>
+            </form>
+        </div>
+
+
+        <!-- Display Products -->
+        <div *ngIf="products.length > 0">
+            <h3>Products</h3>
+            <ul class="product-list">
+                <li *ngFor="let product of products" class="product-item">
+                    <div><strong>Name:</strong> {{ product.name }}</div>
+                    <div><strong>Price:</strong> ${{ product.current_Price }} </div>
+                    <div><strong>Category ID:</strong> {{ product.category_id }}</div>
+                    <div><strong>Description:</strong> {{ product.description }}</div>
+                    <div><strong>Low Stock Threshold:</strong> {{ product.low_Stock_Threshold }}</div>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Form to dispatch orders -->
+        <div *ngIf="dispatchOrdersFormVisible">
+            <h3>Dispatch Orders</h3>
+            <form (ngSubmit)="dispatchOrders(orderId, warehouseId)">
+                <label for="orderId">Order ID:</label>
+                <input type="number" id="orderId" [(ngModel)]="orderId" name="orderId" required>
+                <label for="warehouseId">Warehouse ID:</label>
+                <input type="number" id="warehouseId" [(ngModel)]="warehouseId" name="warehouseId" required>
+                <button type="submit">Dispatch</button>
+            </form>
+        </div>
+
+        <!-- Form to confirm loading pending orders -->
+        <div *ngIf="pendingOrdersFormVisible">
+            <h3>Pending Orders</h3>
+            <form (ngSubmit)="loadPendingOrders()">
+                <label for="confirmation">Are you sure you want to load pending orders?</label>
+                <button type="submit">Yes</button>
+            </form>
+        </div>
+
+        <!-- Display Pending Orders -->
+        <div *ngIf="orders.length > 0">
+            <h3>Pending Orders</h3>
+            <ul class="product-list">
+                <li *ngFor="let order of orders" class="product-item">
+                    <div><strong>Order ID:</strong> {{ order.id }}</div>
+                    <div><strong>Warehouse ID:</strong> {{ order.wareHouse_Id }}</div>
+                    <div><strong>Total Quantity:</strong> {{ order.totalQuantity }}</div>
+                    <div><strong>Total Amount:</strong> ${{ order.totalAmount }}</div>
+                    <div><strong>Status:</strong> {{ order.is_Dispatched }}</div>
+                    <div><strong>Shipping Address:</strong> {{ order.shipping_Address }}</div>
+                </li>
+            </ul>
+        </div>
+
+
+        <!-- Form for low stock reorder -->
+        <div *ngIf="lowStockFormVisible">
+            <h3>Reorder Low Stock Products</h3>
+            <form (ngSubmit)="reorderLowStock()">
+                <label for="confirmation">Are you sure you want to reorder low stock products?</label>
+                <button type="submit">Yes</button>
+            </form>
+            <!-- Display error message for low stock reorder -->
+            <div *ngIf="errorMessage" class="error-message">
+                <p>{{ errorMessage }}</p>
+            </div>
+        </div>
+
+        <!-- Form for missing products reorder -->
+        <div *ngIf="missingProductsFormVisible">
+            <h3>Reorder Missing Products</h3>
+            <form (ngSubmit)="reorderMissingProducts()">
+                <label for="confirmation">Are you sure you want to reorder missing products?</label>
+                <button type="submit">Yes</button>
+            </form>
+            <!-- Display error message for missing products reorder -->
+            <div *ngIf="errorMessage" class="error-message">
+                <p>{{ errorMessage }}</p>
+            </div>
+        </div>
+
+        <!-- Form for receiving purchase orders -->
+        <div *ngIf="receivePurchaseFormVisible">
+            <h3>Receive Purchase Orders</h3>
+            <form (ngSubmit)="receivePurchaseOrders()">
+                <label for="confirmation">Are you sure you want to receive purchase orders?</label>
+                <button type="submit">Yes</button>
+            </form>
+            <!-- Display the error message (or success message) for receive purchase orders -->
+            <div *ngIf="errorMessage" class="error-message">
+                <p>{{ errorMessage }}</p>
+            </div>
+        </div>
+        <div *ngIf="successMessage" class="success-message">
+            <p>{{ successMessage }}</p>
+        </div>
+    </div>
+</div>

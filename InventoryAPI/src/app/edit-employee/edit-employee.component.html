@@ -1,0 +1,147 @@
+<div class="container mt-3">
+    <h3>Employee Operations</h3>
+
+    <div *ngIf="selectedOperation !== 'Get All Employees'">
+        <div *ngIf="selectedOperation === 'Create'">
+            <h4>Create Employee</h4>
+            <form (ngSubmit)="createEmployee()" #createForm="ngForm">
+                <div class="form-group">
+                    <label for="user_name">Username</label>
+                    <input id="user_name" [(ngModel)]="employeeData.user_name" name="user_name" class="form-control"
+                        required />
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input id="password" [(ngModel)]="employeeData.password" name="password" type="password"
+                        class="form-control" required />
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input id="email" [(ngModel)]="employeeData.email" name="email" type="email" class="form-control"
+                        required />
+                </div>
+                <div class="form-group">
+                    <label for="contact_no">Contact Number</label>
+                    <input id="contact_no" [(ngModel)]="employeeData.contact_no" name="contact_no" type="tel"
+                        class="form-control" required />
+                </div>
+                <div class="form-group">
+                    <label for="role">Role</label>
+                    <input id="role" [(ngModel)]="employeeData.role" name="role" class="form-control" required />
+                </div>
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input id="name" [(ngModel)]="employeeData.name" name="name" class="form-control" required />
+                </div>
+                <button class="btn btn-primary" type="submit" [disabled]="createForm.invalid">
+                    Create Employee
+                </button>
+            </form>
+        </div>
+
+        <!-- Update Employee -->
+        <div *ngIf="selectedOperation === 'Update'">
+            <h4>Update Employee</h4>
+
+            <h6 style="margin-top: 50px;">Authentication of Username and Password</h6>
+            <form (ngSubmit)=" updateEmployee()" #updateForm="ngForm">
+                <label for="user_name">Username</label>
+                <div class="form-group">
+                    <input id="user_name" [(ngModel)]="employeeData.user_name" name="user_name" class="form-control"
+                        required />
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input id="password" [(ngModel)]="employeeData.password" name="password" type="password"
+                        class="form-control" />
+                </div>
+
+                <h6 style="margin-top: 50px;">Data to be changed for the User</h6>
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input id="name" [(ngModel)]="employeeData.name" name="name" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input id="email" [(ngModel)]="employeeData.email" name="email" type="email" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label for="contact_no">Contact Number</label>
+                    <input id="contact_no" [(ngModel)]="employeeData.contact_no" name="contact_no" type="tel"
+                        class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label for="role">Role</label>
+                    <input id="role" [(ngModel)]="employeeData.role" name="role" class="form-control" />
+                </div>
+                <button class="btn btn-primary" type="submit" [disabled]="updateForm.invalid">
+                    Update Employee
+                </button>
+            </form>
+        </div>
+
+        <div *ngIf="selectedOperation === 'Delete'">
+            <h4>Delete Employee</h4>
+            <form (ngSubmit)="deleteEmployee()" #deleteForm="ngForm">
+                <div class="form-group">
+                    <label for="user_name">Username</label>
+                    <input id="user_name" [(ngModel)]="employeeData.user_name" name="user_name" class="form-control"
+                        required #deleteUserName="ngModel" />
+                    <div *ngIf="deleteUserName.invalid && deleteUserName.touched" class="text-danger">
+                        Username is required.
+                    </div>
+                </div>
+                <button class="btn btn-danger" type="submit" [disabled]="deleteForm.invalid">Delete Employee</button>
+            </form>
+        </div>
+    </div>
+
+    <div *ngIf="selectedOperation === 'Get All Employees'" class="employee-list-container">
+        <h4 class="employee-list-title">All Employees</h4>
+        <div class="employee-list-header">
+            <span class="employee-header">Username</span>
+            <span class="employee-header">Name</span>
+            <span class="employee-header">Role</span>
+            <span class="employee-header">Email</span>
+            <span class="employee-header">Contact No</span>
+        </div>
+        <ul class="employee-list">
+            <li *ngFor="let employee of employees" class="employee-item">
+                <span class="employee-name">{{ employee.user_name }}</span>
+                <span class="employee-name">{{ employee.name }}</span>
+                <span class="employee-role">{{ employee.role }}</span>
+                <span class="employee-email">{{ employee.email }}</span>
+                <span class="employee-contact">{{ employee.contact_no }}</span>
+            </li>
+        </ul>
+    </div>
+
+
+    <!-- Get By Username -->
+    <div *ngIf="selectedOperation === 'Get By Username'" class="employee-container">
+        <h4 class="form-title">Get Employee By Username</h4>
+        <form (ngSubmit)="getEmployeeByUsername()" #getByUsernameForm="ngForm" class="employee-form">
+            <div class="form-group">
+                <label for="user_name">Username</label>
+                <input id="user_name" [(ngModel)]="employeeData.user_name" name="user_name" class="form-control"
+                    required #getUserName="ngModel" />
+                <div *ngIf="getUserName.invalid && getUserName.touched" class="text-danger">
+                    Username is required.
+                </div>
+            </div>
+            <button class="btn btn-primary" type="submit" [disabled]="getByUsernameForm.invalid">Get Employee</button>
+        </form>
+
+        <div *ngIf="fetchedEmployee" class="employee-details">
+            <h5>Employee Details</h5>
+            <div class="employee-info">
+                <p><strong>Username:</strong> {{ fetchedEmployee.user_name }}</p>
+                <p><strong>Name:</strong> {{ fetchedEmployee.name }}</p>
+                <p><strong>Email:</strong> {{ fetchedEmployee.email }}</p>
+                <p><strong>Contact No:</strong> {{ fetchedEmployee.contact_no }}</p>
+                <p><strong>Role:</strong> {{ fetchedEmployee.role }}</p>
+            </div>
+        </div>
+    </div>
+
+</div>
